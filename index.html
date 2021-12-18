@@ -3,9 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
-
+  <script src='index.js'></script>
   <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
-  
+  <link rel="stylesheet" href="style.css">
+
   <title>Frontend Mentor | Rock, Paper, Scissors</title>
 </head>
 <body>
@@ -24,13 +25,31 @@
   -->
 
   <!-- for testing purposes -->
-  <div class="button">
-    <button value='rock'>rock</button>
-    <button value='paper'>paper</button>
-    <button value='scissors'>scissors</button>
-  </div>
+  <header>
+    <img src='./images/logo.svg'>
+    <div class="score">
+      <p>
+        Score
+        <span id='player-score'>0</span>
+      </p>
+    </div>
+  </header>
 
-  
+  <main>
+    <div class="main-container buttons">
+      <button class='play-button' value="paper"><img src="./images/icon-paper.svg"></button>
+      <button class='play-button' value="scissors"><img src="./images/icon-scissors.svg"></button>
+      <button class='play-button' value="rock"><img src="./images/icon-rock.svg"></button>
+    </div>
+  </main>
+
+  <footer>
+    <button id='show-images-button' data-showing='no'>Rules</button>
+    <div class='rules' style='display: none;'>
+      <img src='./images/image-rules.svg'>
+    </div>
+  </footer>
+
   <div class="attribution">
     Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
     Coded by <a href="#">Your Name Here</a>.
