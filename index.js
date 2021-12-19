@@ -1,10 +1,10 @@
+var playerScore = window.localStorage.getItem('score') || 0;
+document.getElementById('player-score').innerText = playerScore;
 
 /* 
   rock: paper
   rock beats paper
 */
-
-var playerScore = 0;
 
 const winningRelationships = {
   paper: 'rock',
@@ -46,7 +46,7 @@ window.onload = () => {
       main.appendChild(resultContainer);
 
       document.getElementById('your-choice').innerHTML = `
-        <button class="play-button ${buttonValue}" value="${buttonValue}">
+        <button style="opacity: 1;" class="play-button ${buttonValue}" value="${buttonValue}">
           <div class="image">
             <img src="./images/icon-${buttonValue}.svg">
           </div>
@@ -63,13 +63,19 @@ window.onload = () => {
         <p>The house picked</p>
       `;
 
+      setTimeout(() => {
+        document.getElementById('house-choice').querySelector('.play-button').style.opacity = '1';
+        document.getElementById('result').style.opacity = '1';
+      }, 300);
+
       let message = '';
 
       if (houseChoice == buttonValue) {
         message = 'draw';
       } else if (winningRelationships[houseChoice] != buttonValue) {
-        message = 'you won';
+        message = 'you win';
         playerScore++;
+        window.localStorage.setItem('score', playerScore);
         document.getElementById('player-score').innerText = playerScore;
       } else {
         message = 'you lose';
@@ -84,6 +90,7 @@ window.onload = () => {
         .addEventListener('click', () => {
           main.removeChild(resultContainer);
           main.appendChild(mainContainer);
+          resultContainer.querySelector('#result').style.opacity = '0';
         });
 
     });

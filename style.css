@@ -43,6 +43,8 @@ header {
   align-items: center;
   border: 3px solid var(--clr-header-border);
   border-radius: 10px;
+  max-width: 315px;
+  margin: auto;
 }
 
 header img {
@@ -75,7 +77,8 @@ header img {
   justify-content: space-between;
   background: url('./images/bg-triangle.svg') no-repeat center 70%;
   background-size: 70%;
-  margin: 100px 0;
+  margin: 100px auto;
+  max-width: 315px;
 }
 
 .result {
@@ -94,6 +97,8 @@ header img {
 #result {
   margin-top: 50px;
   flex: 1;
+  opacity: 0;
+  transition: opacity 500ms;
 }
 
 #result h2 {
@@ -119,6 +124,7 @@ header img {
   border: 0;
   border-radius: 200px;
   padding: 15px;
+  transition: opacity 400ms;
 }
 
 .play-button .image {
@@ -147,6 +153,7 @@ header img {
 
 .result .play-button {
   margin-top: 0;
+  opacity: 0;
 }
 
 footer button {
@@ -170,7 +177,7 @@ footer button {
   height: 100%;
   top: 0;
   left: 0;
-  transition: opacity 200ms;
+  transition: opacity 400ms;
 }
 
 .rules h2 {
