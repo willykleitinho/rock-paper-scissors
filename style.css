@@ -7,7 +7,7 @@
   --clr-text-light: #fafafa;
   --clr-header-border: hsl(217, 16%, 45%);
 
-  --bg-body: radial-gradient(hsl(214, 47%, 23%), hsl(237, 49%, 15%));
+  --bg-body: linear-gradient(180deg, hsl(214, 47%, 23%), hsl(237, 49%, 15%));
   /* radial-gradient o de cima /\ */
 
   --font-family: 'Barlow Semi Condensed', sans-serif;
@@ -31,44 +31,45 @@ html {
 body {
   background: var(--bg-body);
   min-height: 100vh;
-  padding: 30px;
+  padding: clamp(30px, 8%, 50px);
   font-family: var(--font-family);
   color: var(--clr-text-light);
 }
 
 header {
   display: flex;
-  padding: 10px;
+  padding: 9px;
   justify-content: space-between;
   align-items: center;
   border: 3px solid var(--clr-header-border);
-  border-radius: 10px;
-  max-width: 315px;
+  border-radius: 7px;
   margin: auto;
+  width: clamp(315px, 80%, 700px);
 }
 
 header img {
-  height: 48px;
+  /* height: 51px; */
+  width: 24%;
   margin: 13px;
 }
 
 .score {
   background: var(--clr-text-light);
-  padding: 10px;
+  padding: 9px 0;
   color: var(--clr-header-border);
   font-size: 0.7rem;
   font-weight: 700;
   text-align: center;
   text-transform: uppercase;
-  width: 72px;
-  aspect-ratio: 1/1;
+  width: 80px;
+  aspect-ratio: 1.1/1;
   border-radius: 5px;
 }
 
 .score span {
   display: block;
   color: var(--clr-text-dark);
-  font-size: 2rem;
+  font-size: 2.3rem;
 }
 
 .main-container, .result {
@@ -77,8 +78,14 @@ header img {
   justify-content: space-between;
   background: url('./images/bg-triangle.svg') no-repeat center 70%;
   background-size: 70%;
-  margin: 100px auto;
-  max-width: 315px;
+  margin: 100px  auto;
+  /* margin: 26% auto */
+  width: clamp(315px, 80%, 480px);
+}
+
+.main-container {
+  margin-bottom: 143px;
+  /* margin-bottom: 38%; */
 }
 
 .result {
@@ -87,7 +94,7 @@ header img {
   text-transform: uppercase;
   font-size: 0.9rem;
   letter-spacing: 1px;
-  margin-bottom: 42px;
+  margin-bottom: 50px;
 }
 
 .result  p {
@@ -95,46 +102,53 @@ header img {
 }
 
 #result {
-  margin-top: 50px;
+  margin-top: 75px;
   flex: 1;
   opacity: 0;
   transition: opacity 500ms;
 }
 
 #result h2 {
-  font-size: 3rem;
+  font-size: 3.5rem;
 }
 
 #result button {
   text-transform: uppercase;
   font-family: var(--font-family);
-  letter-spacing: 2px;
-  font-size: 0.9rem;
-  padding: 15px 50px;
+  letter-spacing: 2.5px;
+  font-size: 1rem;
+  padding: 15px 60px;
   margin-top: 15px;
   border: 0;
-  border-radius: 5px;
+  border-radius: 8px;
   color: var(--clr-header-border);
 }
 
 .play-button {
   background: var(--bg-button);
-  width: 130px;
-  height: 130px;
+  width: 42%;
+  aspect-ratio: 1/1;
+  transition: opacity 400ms;
   border: 0;
   border-radius: 200px;
-  padding: 15px;
-  transition: opacity 400ms;
+  border-bottom: 6px solid rgba(0,0,0,0.2);
+  padding: 5%;
+  padding-bottom: 12px;
 }
 
 .play-button .image {
   width: 100%;
   height: 100%;
   background: var(--clr-text-light);
-  border-radius: 200px;
   margin: auto;
   display: grid;
   place-items: center;
+  border-radius: 200px;
+  border-top: 6px solid rgba(0,0,0,0.2);
+}
+
+.play-button img {
+  width: 45%;
 }
 
 .scissors {
@@ -156,13 +170,21 @@ header img {
   opacity: 0;
 }
 
+#your-choice .play-button {
+  position: relative;
+  box-shadow: 0 0 0 15px rgba(255,255,255,0.02),
+              0 0 0 45px rgba(255,255,255,0.02),
+              0 0 0 75px rgba(255,255,255,0.02);
+}
+
 footer button {
   background: none;
   color: var(--clr-text-light);
   font-family: var(--font-family);
-  padding: 10px 30px;
+  font-size: 1rem;
+  padding: 10px 38px;
   border: 2px solid var(--clr-text-light);
-  border-radius: 5px;
+  border-radius: 8px;
   display: block;
   margin: auto;
   font-weight: 600;
@@ -178,20 +200,23 @@ footer button {
   top: 0;
   left: 0;
   transition: opacity 400ms;
+  opacity: 0;
+  display: none
 }
 
 .rules h2 {
   color: var(--clr-text-dark);
   text-transform: uppercase;
   text-align: center;
-  margin: 100px 0;
+  margin-top: 90px;
+  margin-bottom: 110px;
   font-size: 2rem;
 }
 
 .rules > img {
   display: block;
   margin: auto;
-  margin-bottom: 100px;
+  margin-bottom: 145px;
 }
 
 .attribution {
