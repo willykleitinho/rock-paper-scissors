@@ -102,7 +102,7 @@ header img {
 }
 
 #result {
-  margin-top: 75px;
+  margin-top: 77px;
   flex: 1;
   opacity: 0;
   transition: opacity 500ms;
@@ -168,6 +168,13 @@ header img {
 .result .play-button {
   margin-top: 0;
   opacity: 0;
+  width: 100%;
+  padding: 12%;
+  padding-bottom: 9%;
+}
+
+#your-choice, #house-choice {
+  width: 42%;
 }
 
 #your-choice .play-button {
