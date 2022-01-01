@@ -84,8 +84,7 @@ header img {
 }
 
 .main-container {
-  margin-bottom: 143px;
-  /* margin-bottom: 38%; */
+  margin-bottom: 0;
 }
 
 .result {
@@ -197,6 +196,10 @@ footer button {
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 2px;
+  position: absolute;
+  bottom: 6rem;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 .rules {
@@ -238,4 +241,49 @@ footer button {
 .attribution a {
   color: hsl(349, 70%, 56%);
   font-weight: 700;
+}
+
+footer::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+@media (min-width: 550px) {
+  footer button {
+    left: initial;
+    right: 6rem;
+    transform: none;
+  }
+
+  .rules {
+    width: 500px;
+    padding: 2rem;
+    height: auto;
+    top: initial;
+    bottom: 50%;
+    left: 50%;
+    transform: translate(-50%, 50%);
+    border-radius: 20px;
+  }
+
+  .rules h2 {
+    text-align: left;
+    margin: 0;
+    margin-bottom: 3rem;
+    font-size: 2.5rem;
+  }
+  
+  .rules > img {
+    display: block;
+    width: 90%;
+    margin: auto;
+  }
+
+  .rules button {
+    bottom: initial;
+    right: 0;
+    top: 2rem;
+    border: none;
+  }
 }
