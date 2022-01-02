@@ -55,17 +55,28 @@ window.onload = () => {
       `;
 
       document.getElementById('house-choice').innerHTML = `
-        <button class="play-button ${houseChoice}" value="${houseChoice}">
-          <div class="image">
-            <img src="./images/icon-${houseChoice}.svg">
-          </div>
-        </button>
+        <div>
+          <button class="play-button ${houseChoice}" value="${houseChoice}">
+            <div class="image">
+              <img src="./images/icon-${houseChoice}.svg">
+            </div>
+          </button>
+        </div>
         <p>The house picked</p>
       `;
 
       setTimeout(() => {
-        document.getElementById('house-choice').querySelector('.play-button').style.opacity = '1';
-        document.getElementById('result').style.opacity = '1';
+        document.getElementById('house-choice').querySelector('.play-button').style.opacity = `1`; 
+        document.getElementById('your-choice').querySelector('.play-button').style.boxShadow = `
+          0 0 0 15px rgba(255,255,255,0.02),
+          0 0 0 45px rgba(255,255,255,0.02),
+          0 0 0 75px rgba(255,255,255,0.02)
+        `;
+        setTimeout(() => {
+          document.getElementById('result').style.opacity = '1';
+          document.getElementById('result').style.transform = 'scale(1)';
+          document.getElementById('result').style.maxWidth = '50%';
+        }, 300);
       }, 300);
 
       let message = '';
@@ -74,9 +85,11 @@ window.onload = () => {
         message = 'draw';
       } else if (winningRelationships[houseChoice] != buttonValue) {
         message = 'you win';
-        playerScore++;
-        window.localStorage.setItem('score', playerScore);
-        document.getElementById('player-score').innerText = playerScore;
+        setTimeout(()=> {
+          playerScore++;
+          window.localStorage.setItem('score', playerScore);
+          document.getElementById('player-score').innerText = playerScore;
+        }, 500);
       } else {
         message = 'you lose';
       }
@@ -91,6 +104,8 @@ window.onload = () => {
           main.removeChild(resultContainer);
           main.appendChild(mainContainer);
           resultContainer.querySelector('#result').style.opacity = '0';
+          resultContainer.querySelector('#result').style.transform = 'scale(0)';
+          resultContainer.querySelector('#result').style.maxWidth = '0%';
         });
 
     });

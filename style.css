@@ -94,6 +94,8 @@ header img {
   font-size: 0.9rem;
   letter-spacing: 1px;
   margin-bottom: 50px;
+  justify-content: center;
+  gap: 60px;
 }
 
 .result  p {
@@ -104,7 +106,13 @@ header img {
   margin-top: 77px;
   flex: 1;
   opacity: 0;
-  transition: opacity 500ms;
+  transform: scale(0);
+  max-width: 0%;
+  transition: opacity 600ms, transform 600ms, max-width 200ms;
+}
+
+#result > * {
+  min-width: max-content;
 }
 
 #result h2 {
@@ -176,11 +184,14 @@ header img {
   width: 42%;
 }
 
+#house-choice > div{
+  border-radius: 100%;
+  background: hsl(237deg 49% 15%);
+}
+
 #your-choice .play-button {
   position: relative;
-  box-shadow: 0 0 0 15px rgba(255,255,255,0.02),
-              0 0 0 45px rgba(255,255,255,0.02),
-              0 0 0 75px rgba(255,255,255,0.02);
+  transition: box-shadow 300ms;
 }
 
 footer button {
@@ -250,6 +261,14 @@ footer::after {
 }
 
 @media (min-width: 550px) {
+  .main-container, .result {
+    margin: 65px auto;
+  }
+
+  #result {
+    margin-top: 0;
+  }
+
   footer button {
     left: initial;
     right: 6rem;
@@ -285,5 +304,32 @@ footer::after {
     right: 0;
     top: 2rem;
     border: none;
+  }
+}
+
+@media (min-width: 1100px) {
+  .result {
+    width: clamp(550px,90%, 930px);
+  }
+
+  #your-choice, #house-choice {
+    width: 30%;
+    display: flex;
+    flex-direction: column-reverse;
+  }
+
+  #house-choice {
+    order: 3;
+  }
+
+  .result p {
+    margin-top: 10px;
+    margin-bottom: 70px;
+    font-size: 1.5rem;
+  }
+
+  #result {
+    align-self: center;
+    margin-top: 77px;
   }
 }
