@@ -67,15 +67,9 @@ window.onload = () => {
 
       setTimeout(() => {
         document.getElementById('house-choice').querySelector('.play-button').style.opacity = `1`; 
-        document.getElementById('your-choice').querySelector('.play-button').style.boxShadow = `
-          0 0 0 15px rgba(255,255,255,0.02),
-          0 0 0 45px rgba(255,255,255,0.02),
-          0 0 0 75px rgba(255,255,255,0.02)
-        `;
+        document.getElementById('your-choice').querySelector('.play-button').classList.add('play-button_shadow');
         setTimeout(() => {
-          document.getElementById('result').style.opacity = '1';
-          document.getElementById('result').style.transform = 'scale(1)';
-          document.getElementById('result').style.maxWidth = '50%';
+          document.getElementById('result').classList.add('result_expand');
         }, 300);
       }, 300);
 
@@ -103,9 +97,7 @@ window.onload = () => {
         .addEventListener('click', () => {
           main.removeChild(resultContainer);
           main.appendChild(mainContainer);
-          resultContainer.querySelector('#result').style.opacity = '0';
-          resultContainer.querySelector('#result').style.transform = 'scale(0)';
-          resultContainer.querySelector('#result').style.maxWidth = '0%';
+          resultContainer.querySelector('#result').classList.remove('result_expand');
         });
 
     });
