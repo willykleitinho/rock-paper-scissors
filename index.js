@@ -83,7 +83,7 @@ window.onload = () => {
           playerScore++;
           window.localStorage.setItem('score', playerScore);
           document.getElementById('player-score').innerText = playerScore;
-        }, 500);
+        }, 600);
       } else {
         message = 'you lose';
       }
