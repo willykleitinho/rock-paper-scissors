@@ -25,6 +25,7 @@ function chooseForHouse() {
   }
 }
 
+
 const animationDelay = 600;
 
 const mainElement = document.querySelector('main');
@@ -87,15 +88,14 @@ window.onload = () => {
       }
 
       resultMessageContainer.querySelector('#result-message').innerText = resultMessage;
-
-      document.getElementById('play-again-button').addEventListener('click', () => {
-        mainElement.removeChild(resultContainer);
-        mainElement.appendChild(mainContainer);
-        resultMessageContainer.className = '';
-      });
     });
   });
-
+  
+  resultContainer.querySelector('#play-again-button').addEventListener('click', (e) => {
+    mainElement.removeChild(resultContainer);
+    mainElement.appendChild(mainContainer);
+    resultContainer.querySelector('#result').className = '';
+  });
 
   // rules modal
   document.getElementById('show-rules-button').addEventListener('click', e => {
@@ -122,7 +122,6 @@ function strPlayButton(value) {
 }
 
 function incrementScore() {
-  playerScore++;
-  document.getElementById('player-score').innerText = playerScore;
+  document.getElementById('player-score').innerText = ++playerScore;
   window.localStorage.setItem('score', playerScore);
 }
