@@ -1,12 +1,14 @@
+'use strict';
+
 var playerScore = window.localStorage.getItem('score') || 0;
 document.getElementById('player-score').innerText = playerScore;
 
-/* 
-  rock: paper
-  rock beats paper
-*/
-
 const winningRelationships = {
+  /* 
+    rock: paper
+    rock beats paper
+  */
+
   paper: 'rock',
   scissors: 'paper',
   rock: 'scissors'
@@ -23,87 +25,79 @@ function chooseForHouse() {
   }
 }
 
-var mainContainer = document.querySelector('.main-container') || document.createElement('div');
-mainContainer.className = 'main-container';
+const animationDelay = 600;
 
-var resultContainer = document.createElement('div');
+const mainElement = document.querySelector('main');
+
+const mainContainer = document.querySelector('.main-container');
+
+const resultContainer = document.createElement('div');
 resultContainer.className = 'result';
 resultContainer.innerHTML = `
   <div id="your-choice"></div>
   <div id="house-choice"></div>
-  <div id="result"></div>
+  <div id="result">
+    <h2 id="result-message"></h2>
+    <button id="play-again-button">Play again</button>
+  </div>
 `;
 
+
 window.onload = () => {
-  // temp
   document.querySelectorAll('.play-button').forEach(button => {
     button.addEventListener('click', (ev) => {
       const buttonValue = ev.currentTarget.value;
       const houseChoice = chooseForHouse();
 
-      const main = document.querySelector('main');
-      main.removeChild(mainContainer);
-      main.appendChild(resultContainer);
+      mainElement.removeChild(mainContainer);
+      mainElement.appendChild(resultContainer);
 
       document.getElementById('your-choice').innerHTML = `
-        <button style="opacity: 1;" class="play-button ${buttonValue}" value="${buttonValue}">
-          <div class="image">
-            <img src="./images/icon-${buttonValue}.svg">
-          </div>
-        </button>
+        ${strPlayButton(buttonValue)}
         <p>You picked</p>
       `;
 
       document.getElementById('house-choice').innerHTML = `
         <div>
-          <button class="play-button ${houseChoice}" value="${houseChoice}">
-            <div class="image">
-              <img src="./images/icon-${houseChoice}.svg">
-            </div>
-          </button>
+          ${strPlayButton(houseChoice)}
         </div>
         <p>The house picked</p>
       `;
 
+      const resultMessageContainer = resultContainer.querySelector('#result');
+
+      // button and match result animation 
       setTimeout(() => {
         document.getElementById('house-choice').querySelector('.play-button').style.opacity = `1`; 
         document.getElementById('your-choice').querySelector('.play-button').classList.add('play-button_shadow');
         setTimeout(() => {
-          document.getElementById('result').classList.add('result_expand');
-        }, 300);
-      }, 300);
+          resultMessageContainer.className = 'result_expand';
+        }, animationDelay / 2);
+      }, animationDelay / 2);
 
-      let message = '';
+      let resultMessage = '';
 
       if (houseChoice == buttonValue) {
-        message = 'draw';
+        resultMessage = 'draw';
       } else if (winningRelationships[houseChoice] != buttonValue) {
-        message = 'you win';
-        setTimeout(()=> {
-          playerScore++;
-          window.localStorage.setItem('score', playerScore);
-          document.getElementById('player-score').innerText = playerScore;
-        }, 600);
+        resultMessage = 'you win';
+        setTimeout(incrementScore, animationDelay);
       } else {
-        message = 'you lose';
+        resultMessage = 'you lose';
       }
 
-      document.getElementById('result').innerHTML = `
-        <h2>${message}</h2>
-        <button id="play-again-button">Play again</button>
-      `;
+      resultMessageContainer.querySelector('#result-message').innerText = resultMessage;
 
-      document.getElementById('play-again-button')
-        .addEventListener('click', () => {
-          main.removeChild(resultContainer);
-          main.appendChild(mainContainer);
-          resultContainer.querySelector('#result').classList.remove('result_expand');
-        });
-
+      document.getElementById('play-again-button').addEventListener('click', () => {
+        mainElement.removeChild(resultContainer);
+        mainElement.appendChild(mainContainer);
+        resultMessageContainer.className = '';
+      });
     });
   });
 
-  // temp rule on/off
+
+  // rules modal
   document.getElementById('show-rules-button').addEventListener('click', e => {
     const rulesContainer = e.currentTarget.nextElementSibling;
     rulesContainer.style.display = 'block';
@@ -115,4 +109,20 @@ window.onload = () => {
     rulesContainer.style.opacity = '0';
     setTimeout(() => rulesContainer.style.display = 'none', 100)
   });
+}
+
+function strPlayButton(value) {
+  return `
+    <button class="play-button ${value}" value="${value}">
+      <div class="image">
+        <img src="./images/icon-${value}.svg">
+      </div>
+    </button>
+  `;
+}
+
+function incrementScore() {
+  playerScore++;
+  document.getElementById('player-score').innerText = playerScore;
+  window.localStorage.setItem('score', playerScore);
 }

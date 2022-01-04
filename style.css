@@ -113,6 +113,11 @@ header img {
   min-width: max-content;
 }
 
+.result_expand {
+  opacity: 1 !important;
+  transform: scale(1) !important;
+}
+
 #result h2 {
   font-size: 3.5rem;
 }
@@ -133,12 +138,20 @@ header img {
   background: var(--bg-button);
   width: 42%;
   aspect-ratio: 1/1;
-  transition: opacity 400ms;
   border: 0;
   border-radius: 200px;
   border-bottom: 6px solid rgba(0,0,0,0.2);
   padding: 5%;
-  padding-bottom: 12px;
+  padding-bottom: 4%;
+  transition: transform 100ms, opacity 400ms;
+}
+
+.play-button:hover {
+  transform: scale(1.1);
+}
+
+.play-button:active {
+  transform: scale(0.9);
 }
 
 .play-button_shadow {
@@ -178,7 +191,6 @@ header img {
 
 .result .play-button {
   margin-top: 0;
-  opacity: 0;
   width: 100%;
   padding: 12%;
   padding-bottom: 9%;
@@ -186,6 +198,10 @@ header img {
 
 #your-choice, #house-choice {
   width: 42%;
+}
+
+#house-choice .play-button {
+  opacity: 0;
 }
 
 #house-choice > div{
@@ -215,6 +231,11 @@ footer button {
   bottom: 3.5rem;
   left: 50%;
   transform: translateX(-50%);
+  transition: background-color 100ms;
+}
+
+footer button:hover {
+  background: rgba(255, 255, 255, 0.1);
 }
 
 .rules {
@@ -366,12 +387,4 @@ footer::after {
   .result_expand {
     max-width: 50% !important;
   }
-}
-
-
-/* utilities */
-
-.result_expand {
-  opacity: 1 !important;
-  transform: scale(1) !important;
 }
